@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\GuardianController;
@@ -42,6 +43,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Enrollment CRUD
     Route::apiResource('enrollments', EnrollmentController::class);
+
+    // Attendance CRUD
+    Route::apiResource('attendances', AttendanceController::class);
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout']);
