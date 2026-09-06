@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\FeeController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -46,6 +47,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Attendance CRUD
     Route::apiResource('attendances', AttendanceController::class);
+
+    // Fee CRUD
+    Route::apiResource('fees', FeeController::class);
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout']);
