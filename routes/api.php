@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeeController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\StudentController;
@@ -50,6 +51,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Fee CRUD
     Route::apiResource('fees', FeeController::class);
+
+    // Exam CRUD
+    Route::apiResource('exams', ExamController::class);
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout']);
