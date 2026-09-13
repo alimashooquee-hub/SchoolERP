@@ -5,29 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attendance extends Model
+class TeacherClassSubject extends Model
 {
     use HasFactory;
 
+    protected $table = 'teacher_class_subject';
+
     protected $fillable = [
-        'student_id',
+        'teacher_id',
         'class_room_id',
-        'attendance_date',
-        'status',
-        'remarks',
+        'subject_id',
     ];
 
-    protected $casts = [
-        'attendance_date' => 'date',
-    ];
-
-    public function student()
+    public function teacher()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function classRoom()
     {
         return $this->belongsTo(ClassRoom::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
     }
 }

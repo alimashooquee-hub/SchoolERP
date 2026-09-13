@@ -13,6 +13,7 @@ class Result extends Model
         'exam_id',
         'student_id',
         'subject_id',
+        'grading_scheme_id',
         'total_marks',
         'obtained_marks',
         'grade',
@@ -37,5 +38,10 @@ class Result extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function gradingScheme()
+    {
+        return $this->belongsTo(GradingScheme::class);
     }
 }

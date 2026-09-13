@@ -29,4 +29,9 @@ class Teacher extends Model
         'date_of_birth' => 'date',
         'joining_date' => 'date',
     ];
+
+    public function teacherClassSubjects()
+    {
+        return $this->hasMany(TeacherClassSubject::class);
+    }
 }

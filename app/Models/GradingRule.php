@@ -5,27 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Exam extends Model
+class GradingRule extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'exam_name',
-        'exam_date',
-        'class_room_id',
         'grading_scheme_id',
-        'status',
-        'description',
+        'grade',
+        'min_percentage',
+        'max_percentage',
+        'grade_point',
+        'remarks',
     ];
 
     protected $casts = [
-        'exam_date' => 'date',
+        'min_percentage' => 'decimal:2',
+        'max_percentage' => 'decimal:2',
+        'grade_point' => 'decimal:2',
     ];
-
-    public function classRoom()
-    {
-        return $this->belongsTo(ClassRoom::class);
-    }
 
     public function gradingScheme()
     {

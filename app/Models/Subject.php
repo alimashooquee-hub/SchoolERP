@@ -21,4 +21,9 @@ class Subject extends Model
     protected $casts = [
         'credit_hours' => 'integer',
     ];
+
+    public function teacherClassSubjects()
+    {
+        return $this->hasMany(TeacherClassSubject::class, 'subject_id');
+    }
 }

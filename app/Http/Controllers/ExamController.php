@@ -11,7 +11,10 @@ class ExamController extends Controller
 {
     public function index(): JsonResponse
     {
-        $exams = Exam::with('classRoom')
+        $exams = Exam::with([
+            'classRoom',
+            'gradingScheme',
+        ])
             ->latest('exam_date')
             ->paginate(20);
 
@@ -38,6 +41,12 @@ class ExamController extends Controller
                 'exists:class_rooms,id',
             ],
 
+            'grading_scheme_id' => [
+                'nullable',
+                'integer',
+                'exists:grading_schemes,id',
+            ],
+
             'status' => [
                 'nullable',
                 Rule::in([
@@ -58,14 +67,20 @@ class ExamController extends Controller
 
         return response()->json([
             'message' => 'Exam created successfully.',
-            'data' => $exam->load('classRoom'),
+            'data' => $exam->load([
+                'classRoom',
+                'gradingScheme',
+            ]),
         ], 201);
     }
 
     public function show(Exam $exam): JsonResponse
     {
         return response()->json([
-            'data' => $exam->load('classRoom'),
+            'data' => $exam->load([
+                'classRoom',
+                'gradingScheme',
+            ]),
         ]);
     }
 
@@ -94,6 +109,13 @@ class ExamController extends Controller
                 'exists:class_rooms,id',
             ],
 
+            'grading_scheme_id' => [
+                'sometimes',
+                'nullable',
+                'integer',
+                'exists:grading_schemes,id',
+            ],
+
             'status' => [
                 'nullable',
                 Rule::in([
@@ -114,7 +136,10 @@ class ExamController extends Controller
 
         return response()->json([
             'message' => 'Exam updated successfully.',
-            'data' => $exam->fresh()->load('classRoom'),
+            'data' => $exam->fresh()->load([
+                'classRoom',
+                'gradingScheme',
+            ]),
         ]);
     }
 
